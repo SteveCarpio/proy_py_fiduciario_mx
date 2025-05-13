@@ -28,7 +28,10 @@ def index():
         persona = Persona(
             nombre=form.nombre.data, 
             correo=form.correo.data,
-            notas=form.notas.data)
+            notas=form.notas.data,
+            fecha_entrada=form.fecha_entrada.data,
+            estado=form.estado.data
+        )
 
         # Agregamos la nueva persona a la base de datos
         db.session.add(persona)

@@ -9,8 +9,11 @@
     <ul>
     {% for persona in personas %}
         <li>
-            {{ persona.nombre }} - {{ persona.correo }} <br>
-            <strong>Notas:</strong> {{ persona.notas or "Sin notas" }}
+            <strong>Nombre:</strong> {{ persona.nombre }} <br>
+            <strong>Email</strong>   {{ persona.correo }} <br>
+            <strong>Notas:</strong>  {{ persona.notas or "Sin notas" }} <br>
+            <strong>Fecha de entrada:</strong> {{ persona.fecha_entrada }} <br>
+            <strong>Estado:</strong> {{ persona.estado }} <br><br>
         </li>
     {% endfor %}
     </ul>
