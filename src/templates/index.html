@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Usuarios - Notas</title>
+</head>
+<body>
+    <h1>Lista de Usuarios</h1>
+    <table border="1">
+        <tr>
+            <th>Email</th>
+            <th>Nombre</th>
+            <th>Notas</th>
+            <th>Actualizar</th>
+        </tr>
+        {% for usuario in usuarios %}
+        <tr>
+            <form method="post">
+                <td>{{ usuario[0] }}</td>
+                <td>{{ usuario[1] }}</td>
+                <td>
+                    <input type="text" name="nota" value="{{ usuario[2] or '' }}">
+                    <input type="hidden" name="email" value="{{ usuario[0] }}">
+                </td>
+                <td><button type="submit">Guardar</button></td>
+            </form>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
