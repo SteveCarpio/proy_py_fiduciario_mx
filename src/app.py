@@ -1,12 +1,30 @@
+import sys
+import os
+
+def resource_path(relative_path):
+    """Obtiene la ruta absoluta al recurso, adaptada para PyInstaller."""
+    try:
+        base_path = sys._MEIPASS  # Carpeta temporal de PyInstaller
+    except AttributeError:
+        base_path = os.path.abspath(".")  # Entorno normal (dev)
+
+    return os.path.join(base_path, relative_path)
+
+# --------------------------------------
+
 from flask import Flask, render_template, redirect, url_for
 from models import db, Persona
 from forms import PersonaForm
 
 # Creamos la instancia principal de la aplicación Flask
-app = Flask(__name__)
+#app = Flask(__name__)
+app = Flask(__name__, template_folder=resource_path('templates'))
 
 app.config['SECRET_KEY'] = '123456'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///personas.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///personas.db'
+db_path = os.path.join(os.path.dirname(__file__), 'personas.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # Desactivamos el rastreo de modificaciones del objeto (mejora rendimiento)
 
 # Asociamos la app Flask con SQLAlchemy
