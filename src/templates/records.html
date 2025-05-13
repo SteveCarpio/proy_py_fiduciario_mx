@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registros</title>
+</head>
+<body>
+    <h1>Personas Registradas</h1>
+    <ul>
+    {% for persona in personas %}
+        <li>
+            {{ persona.nombre }} - {{ persona.correo }} <br>
+            <strong>Notas:</strong> {{ persona.notas or "Sin notas" }}
+        </li>
+    {% endfor %}
+    </ul>
+    <a href="{{ url_for('index') }}">Volver al formulario</a>
+</body>
+</html>
